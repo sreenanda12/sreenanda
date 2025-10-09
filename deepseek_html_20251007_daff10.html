@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4">Library Members</h2>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <form method="POST" action="{{ url_for('add_member') }}">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Add New Member</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control mb-2" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control mb-2" name="email" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control mb-2" name="phone" placeholder="Phone">
+                    <button type="submit" class="btn btn-primary">Add Member</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Join Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members %}
+            <tr>
+                <td>{{ member.id }}</td>
+                <td>{{ member.name }}</td>
+                <td>{{ member.email }}</td>
+                <td>{{ member.phone }}</td>
+                <td>{{ member.join_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
